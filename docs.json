@@ -7,7 +7,6 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
@@ -18,18 +17,24 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
             "group": "Endpoint examples",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/geminiImageGenerate",
+              "api-reference/endpoint/geminiVideoGenerate",
+              "api-reference/endpoint/geminiResult",
+			  "api-reference/endpoint/soraVideoGenerate",
+			  "api-reference/endpoint/soraVideoResult",
+			  "api-reference/endpoint/sunoMusicGenerate",
+			  "api-reference/endpoint/sunoMusicConcat",
+			  "api-reference/endpoint/sunoMusicUpload",
+			  "api-reference/endpoint/sunoMusicLyrics",
+			  "api-reference/endpoint/sunoMusicMP4",
+			  "api-reference/endpoint/sunoMusicWAV",
+			  "api-reference/endpoint/sunoMusicTiming",
+			  "api-reference/endpoint/sunoMusicDownbeats",
+			  "api-reference/endpoint/sunoMusicUpsampleTags",
+			  "api-reference/endpoint/sunoMusicPersona",
+			  "api-reference/endpoint/sunoResult"
             ]
           }
         ]
@@ -39,21 +44,5 @@
       "anchors": [
       ]
     }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
   }
 }
