@@ -72,4 +72,13 @@
       "linkedin": "https://linkedin.com/company/mintlify"
     }
   }
+  "api": {
+  "mdx": {
+    "server": "https://mintlify.com/api",
+    "auth": {
+      "method": "key",
+      "name": "x-api-key"
+    }
+  }
+  }
 }
