@@ -1,217 +1,1113 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
-  "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
+    "openapi": "3.1.0",
+    "info": {
+        "title": "OpenAPI Plant Store",
+        "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+        "license": {
+            "name": "MIT"
         },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
+        "version": "1.0.0"
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
+    "servers": [
+        {
+            "url": "https://api.waytoapi.com/apidoc/collect/ai",
+            "description": "Generated server url"
         }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
+    ],
+    "security": [
+        {
+            "ApiKeyAuth": [
+
+            ]
+        }
+    ],
+    "paths": {
+        "/suno/music/wav": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicWAV",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicWAVReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
         },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
+        "/suno/music/upsampleTags": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicUpsampleTags",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicUpsampleTagsReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
+        },
+        "/suno/music/upload": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicUpload",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicUploadReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/timing": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicTiming",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicTimingReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/persona": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicPersona",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicPersonaReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/mp4": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicMP4",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicMp4Req"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/lyrics": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicLyrics",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicLyricsReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/generate": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicGenerate",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicGenerateReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/downbeats": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicDownbeats",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicDownbeatsReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/music/concat": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoMusicConcat",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SunoMusicConcatReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sora/video/generate": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "soraVideoGenerate",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SoraVideoGenerateReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gemini/video/generate": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "geminiVideoGenerate",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GeminiVideoGenerateReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gemini/image/generate": {
+            "post": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "geminiImageGenerate",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GeminiImageGenerateReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoGenerateRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/suno/result": {
+            "get": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "sunoResult",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSunoMusicResultRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sora/video/result": {
+            "get": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "soraVideoResult",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoResultRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gemini/result": {
+            "get": {
+                "tags": [
+                    "mountsea-controller"
+                ],
+                "operationId": "geminiResult",
+                "parameters": [
+                    {
+                        "name": "aiKey",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CallResultSoraVideoResultRes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-      }
     },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
+    "webhooks": {
+        "/plant/webhook": {
+            "post": {
+                "description": "Information about a new plant added to the store",
+                "requestBody": {
+                    "description": "Plant added to the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewPlant"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Return a 200 status to indicate that the data was received successfully"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SunoMusicWAVReq": {
+                "type": "object",
+                "properties": {
+                    "clip_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CallResultSoraVideoGenerateRes": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "info": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/SoraVideoGenerateRes"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "failure": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SoraVideoGenerateRes": {
+                "type": "object",
+                "properties": {
+                    "taskCode": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicUpsampleTagsReq": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicUploadReq": {
+                "type": "object",
+                "properties": {
+                    "audioUrl": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "SunoMusicTimingReq": {
+                "type": "object",
+                "properties": {
+                    "clip_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicPersonaReq": {
+                "type": "object",
+                "properties": {
+                    "clip_id": {
+                        "type": "string"
+                    },
+                    "is_public": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "image_s3_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicMp4Req": {
+                "type": "object",
+                "properties": {
+                    "clip_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicLyricsReq": {
+                "type": "object",
+                "properties": {
+                    "lyrics_model": {
+                        "type": "string"
+                    },
+                    "prompt": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Controls": {
+                "type": "object",
+                "properties": {
+                    "style_weight": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "audio_weight": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "weirdness_constraint": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "InfillContextRange": {
+                "type": "object",
+                "properties": {
+                    "start_s": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "end_s": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Persona": {
+                "type": "object",
+                "properties": {
+                    "artist_clip_id": {
+                        "type": "string"
+                    },
+                    "persona_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Range": {
+                "type": "object",
+                "properties": {
+                    "start_s": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "end_s": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "SunoMusicGenerateReq": {
+                "type": "object",
+                "properties": {
+                    "task": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "make_instrumental": {
+                        "type": "boolean"
+                    },
+                    "prompt": {
+                        "type": "string"
+                    },
+                    "continued_aligned_prompt": {
+                        "type": "string"
+                    },
+                    "infill_lyrics": {
+                        "type": "string"
+                    },
+                    "gpt_description_prompt": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "negative_tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "clip_id": {
+                        "type": "string"
+                    },
+                    "continue_at": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "range": {
+                        "$ref": "#/components/schemas/Range"
+                    },
+                    "infill_context_range": {
+                        "$ref": "#/components/schemas/InfillContextRange"
+                    },
+                    "persona": {
+                        "$ref": "#/components/schemas/Persona"
+                    },
+                    "controls": {
+                        "$ref": "#/components/schemas/Controls"
+                    },
+                    "vocal_gender": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicDownbeatsReq": {
+                "type": "object",
+                "properties": {
+                    "clip_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SunoMusicConcatReq": {
+                "type": "object",
+                "properties": {
+                    "clip_id": {
+                        "type": "string"
+                    },
+                    "is_infill": {
+                        "type": "boolean"
+                    },
+                    "project_id": {
+                        "type": "string"
+                    },
+                    "edit_session_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SoraVideoGenerateReq": {
+                "type": "object",
+                "properties": {
+                    "model": {
+                        "type": "string"
+                    },
+                    "prompt": {
+                        "type": "string"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "orientation": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "removeWatermark": {
+                        "type": "boolean"
+                    },
+                    "editId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GeminiVideoGenerateReq": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string"
+                    },
+                    "action": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "videoId": {
+                        "type": "string"
+                    },
+                    "imageList": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "aspectRatio": {
+                        "type": "string"
+                    },
+                    "translation": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "GeminiImageGenerateReq": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string"
+                    },
+                    "action": {
+                        "type": "string"
+                    },
+                    "num_images": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "image_urls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "aspect_ratio": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "resolution": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CallResultSunoMusicResultRes": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "info": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/SunoMusicResultRes"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "failure": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SunoMusicResultRes": {
+                "type": "object",
+                "properties": {
+                    "taskId": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "musicUrl": {
+                        "type": "string"
+                    },
+                    "addTime": {
+                        "type": "string"
+                    },
+                    "endTime": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CallResultSoraVideoResultRes": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "info": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/SoraVideoResultRes"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "failure": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SoraVideoResultRes": {
+                "type": "object",
+                "properties": {
+                    "taskId": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "videoUrl": {
+                        "type": "string"
+                    },
+                    "addTime": {
+                        "type": "string"
+                    },
+                    "endTime": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
     }
-  }
 }
